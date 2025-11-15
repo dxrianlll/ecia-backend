@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connecter votre boutique Shopify - ECIA</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 16px;
+      padding: 48px;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 48px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .step {
+      background: #f9f9f9;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .step-number {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      background: #667eea;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 28px;
+      font-weight: 700;
+      margin-right: 12px;
+    }
+
+    .input-group {
+      margin: 32px 0;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .input-wrapper {
+      display: flex;
+      align-items: center;
+      border: 2px solid #e5e5e5;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .input-wrapper:focus-within {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    input {
+      flex: 1;
+      padding: 14px 16px;
+      font-size: 16px;
+      border: none;
+      outline: none;
+    }
+
+    .domain-suffix {
+      padding: 14px 16px;
+      background: #f5f5f5;
+      color: #999;
+      font-size: 14px;
+      border-left: 2px solid #e5e5e5;
+    }
+
+    .connect-button {
+      width: 100%;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 24px;
+    }
+
+    .connect-button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+    }
+
+    .connect-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .connect-button:active {
+      transform: translateY(0);
+    }
+
+    .security-note {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+      font-size: 13px;
+      color: #999;
+    }
+
+    .security-icon {
+      font-size: 16px;
+    }
+
+    .error-message {
+      background: #fee;
+      border: 1px solid #fcc;
+      color: #c33;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">🚀</div>
+    <h1>Connecter votre boutique Shopify</h1>
+    <p>Configurez vos emails automatisés en quelques clics</p>
+
+    <div class="step">
+      <span class="step-number">1</span>
+      <strong>Entrez votre domaine Shopify</strong>
+    </div>
+    <div class="step">
+      <span class="step-number">2</span>
+      <strong>Autorisez ECIA à accéder à votre boutique</strong>
+    </div>
+    <div class="step">
+      <span class="step-number">3</span>
+      <strong>Personnalisez vos emails</strong>
+    </div>
+
+    <div class="error-message" id="errorMessage">
+      Veuillez entrer un nom de boutique valide
+    </div>
+
+    <form id="connectForm">
+      <div class="input-group">
+        <label for="shopName">Nom de votre boutique Shopify</label>
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="shopName" 
+            name="shopName"
+            placeholder="ma-boutique"
+            pattern="[a-zA-Z0-9-]+"
+            required
+            autocomplete="off"
+          >
+          <span class="domain-suffix">.myshopify.com</span>
+        </div>
+      </div>
+
+      <button type="submit" class="connect-button" id="connectBtn">
+        🔗 Connecter ma boutique Shopify
+      </button>
+    </form>
+
+    <div class="security-note">
+      <span class="security-icon">🔒</span>
+      <span>Connexion sécurisée via OAuth Shopify</span>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('connectForm');
+    const shopNameInput = document.getElementById('shopName');
+    const connectBtn = document.getElementById('connectBtn');
+    const errorMessage = document.getElementById('errorMessage');
+
+    // Vérifier si un shop est déjà dans l'URL (retour après paiement)
+    const urlParams = new URLSearchParams(window.location.search);
+    const prefilledShop = urlParams.get('shop');
+    if (prefilledShop) {
+      shopNameInput.value = prefilledShop.replace('.myshopify.com', '');
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const shopName = shopNameInput.value.trim().toLowerCase();
+      
+      // Validation
+      if (!shopName || shopName.length < 3) {
+        errorMessage.textContent = 'Le nom de boutique doit contenir au moins 3 caractères';
+        errorMessage.classList.add('show');
+        return;
+      }
+
+      if (!/^[a-z0-9-]+$/.test(shopName)) {
+        errorMessage.textContent = 'Le nom de boutique ne peut contenir que des lettres, chiffres et tirets';
+        errorMessage.classList.add('show');
+        return;
+      }
+
+      errorMessage.classList.remove('show');
+
+      // Désactiver le bouton
+      connectBtn.disabled = true;
+      connectBtn.textContent = '⏳ Connexion en cours...';
+
+      // Rediriger vers le backend OAuth
+      const shop = `${shopName}.myshopify.com`;
+      
+      // REMPLACE PAR TON URL VERCEL
+      const backendUrl = 'https://your-app.vercel.app';
+      window.location.href = `${backendUrl}/api/shopify/install?shop=${shop}`;
+    });
+
+    // Auto-focus sur l'input
+    shopNameInput.focus();
+
+    // Supprimer les espaces en temps réel
+    shopNameInput.addEventListener('input', (e) => {
+      e.target.value = e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '');
+    });
+  </script>
+</body>
+</html>
